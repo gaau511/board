@@ -12,4 +12,6 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 public interface PostMapper {
 
     PostMapper INSTANCE = Mappers.getMapper( PostMapper.class );
+
+    Post postCreateRequestDtoToPost(PostCreateRequestDto request);
 }
