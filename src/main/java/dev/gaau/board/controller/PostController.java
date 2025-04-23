@@ -1,6 +1,7 @@
 package dev.gaau.board.controller;
 
 import dev.gaau.board.dto.post.request.PostCreateRequestDto;
+import dev.gaau.board.dto.post.request.PostUpdateRequestDto;
 import dev.gaau.board.dto.post.response.PostAbstractResponseDto;
 import dev.gaau.board.dto.post.response.PostResponseDto;
 import dev.gaau.board.service.PostService;
@@ -32,5 +33,14 @@ public class PostController {
 
         return ResponseEntity.ok(postDtos);
     }
+
+    @ResponseBody
+    @GetMapping("/api/{id}")
+    public ResponseEntity<PostResponseDto> viewPost(@PathVariable("id") Long id) {
+        PostResponseDto postDto = postService.getPostById(id);
+
+        return ResponseEntity.ok(postDto);
+    }
+
 
 }
