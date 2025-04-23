@@ -44,7 +44,13 @@ public class PostService {
 
         return postMapper.postToPostResponseDto(post);
     }
-    public PostResponseDto deletePost(PostDeleteRequestDto request) {return null;}
-    public PostResponseDto getPostById(Long postId) {return null;}
-    public List<PostAbstractResponseDto> getAllPosts() {return null;};
+
+    public Void deletePost(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post not found with id: " + postId));
+
+        postRepository.delete(post);
+        return null;
+    }
+
 }
