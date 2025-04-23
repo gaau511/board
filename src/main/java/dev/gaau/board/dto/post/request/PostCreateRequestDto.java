@@ -10,5 +10,5 @@ import lombok.*;
 public class PostCreateRequestDto {
     private String nickname;
     private String title;
-    private String name;
+    private String content;
 }

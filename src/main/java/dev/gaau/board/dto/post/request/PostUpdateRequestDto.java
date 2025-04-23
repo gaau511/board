@@ -8,8 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class PostUpdateRequestDto {
-    private Long postId;
     private String nickname;
     private String title;
-    private String name;
+    private String content;
 }
