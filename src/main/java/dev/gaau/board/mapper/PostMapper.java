@@ -2,6 +2,7 @@ package dev.gaau.board.mapper;
 
 import dev.gaau.board.domain.Post;
 import dev.gaau.board.dto.post.request.PostCreateRequestDto;
+import dev.gaau.board.dto.post.response.PostAbstractResponseDto;
 import dev.gaau.board.dto.post.response.PostResponseDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -16,4 +17,5 @@ public interface PostMapper {
 
     Post postCreateRequestDtoToPost(PostCreateRequestDto request);
     PostResponseDto postToPostResponseDto(Post post);
+    PostAbstractResponseDto postToPostAbstractResponseDto(Post post);
 }
