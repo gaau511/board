@@ -1,13 +1,15 @@
 package dev.gaau.board.controller;
 
 import dev.gaau.board.dto.post.request.PostCreateRequestDto;
+import dev.gaau.board.dto.post.response.PostAbstractResponseDto;
 import dev.gaau.board.dto.post.response.PostResponseDto;
 import dev.gaau.board.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,9 +19,18 @@ public class PostController {
 
     @ResponseBody
     @PostMapping("/api/write")
-    public ResponseEntity<PostResponseDto> createPost(PostCreateRequestDto request) {
+    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostCreateRequestDto request) {
         PostResponseDto postDto = postService.createPost(request);
 
         return ResponseEntity.ok(postDto);
     }
+
+    @ResponseBody
+    @GetMapping("/api")
+    public ResponseEntity<List<PostAbstractResponseDto>> viewPostList() {
+        List<PostAbstractResponseDto> postDtos = postService.getAllPosts();
+
+        return ResponseEntity.ok(postDtos);
+    }
+
 }
