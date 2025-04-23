@@ -53,4 +53,11 @@ public class PostService {
         return null;
     }
 
+    public PostResponseDto getPostById(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post not found with id: " + postId));
+
+        return postMapper.postToPostResponseDto(post);
+    }
+
 }
