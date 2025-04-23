@@ -60,4 +60,9 @@ public class PostService {
         return postMapper.postToPostResponseDto(post);
     }
 
+    public List<PostAbstractResponseDto> getAllPosts() {
+        List<Post> posts = postRepository.findAll();
+
+        return posts.stream().map(post -> postMapper.postToPostAbstractResponseDto(post)).toList();
+    }
 }
