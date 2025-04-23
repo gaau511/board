@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 public class PostAbstractResponseDto {
 
-    private Long postId;
+    private Long id;
     private String nickname;
     private String title;
     private LocalDateTime createdAt;

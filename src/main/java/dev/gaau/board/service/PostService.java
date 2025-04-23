@@ -26,9 +26,9 @@ public class PostService {
         return postMapper.postToPostResponseDto(savedPost);
     }
 
-    public PostResponseDto updatePost(Long postId, PostUpdateRequestDto request) {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new RuntimeException("Post not found with id: " + postId));
+    public PostResponseDto updatePost(Long id, PostUpdateRequestDto request) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post not found with id: " + id));
 
         if (!request.getNickname().isEmpty()) {
             post.setNickname(request.getNickname());
@@ -43,17 +43,17 @@ public class PostService {
         return postMapper.postToPostResponseDto(post);
     }
 
-    public Void deletePost(Long postId) {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new RuntimeException("Post not found with id: " + postId));
+    public Void deletePost(Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post not found with id: " + id));
 
         postRepository.delete(post);
         return null;
     }
 
-    public PostResponseDto getPostById(Long postId) {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new RuntimeException("Post not found with id: " + postId));
+    public PostResponseDto getPostById(Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post not found with id: " + id));
 
         return postMapper.postToPostResponseDto(post);
     }
