@@ -53,4 +53,11 @@ public class PostViewController {
         return "/view/board/edit.html";
     }
 
+    @PostMapping("/edit/{id}")
+    public String editPost(@PathVariable("id") Long id,
+                           @ModelAttribute PostUpdateRequestDto request) {
+        postService.updatePost(id, request);
+        return "redirect:/view/board/{id}";
+    }
+
 }
