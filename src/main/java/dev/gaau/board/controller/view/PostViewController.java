@@ -35,4 +35,9 @@ public class PostViewController {
         return "view/board/post.html";
     }
 
+    @GetMapping("/write")
+    public String createPostPage() {
+        return "view/board/write.html";
+    }
+
 }
