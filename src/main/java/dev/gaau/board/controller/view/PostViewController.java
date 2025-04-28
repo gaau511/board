@@ -40,4 +40,10 @@ public class PostViewController {
         return "view/board/write.html";
     }
 
+    @PostMapping("/write")
+    public String createPost(@ModelAttribute PostCreateRequestDto request) {
+        postService.createPost(request);
+        return "redirect:/view/board";
+    }
+
 }
