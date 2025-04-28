@@ -60,4 +60,9 @@ public class PostViewController {
         return "redirect:/view/board/{id}";
     }
 
+    @PostMapping("/delete/{id}")
+    public String deletePost(@PathVariable("id") Long id) {
+        postService.deletePost(id);
+        return "redirect:/view/board";
+    }
 }
