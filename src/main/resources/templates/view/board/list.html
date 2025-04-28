@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+<div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6">
+    <h1 class="text-2xl font-bold mb-4">게시글 목록</h1>
+    <a href="/view/board/write" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+        글쓰기
+    </a>
+
+    <div class="divide-y divide-gray-200">
+        <div th:each="post : ${posts}" class="py-4">
+            <a th:href="@{/view/board/{id}(id=${post.id})}" class="block hover:bg-gray-50 p-4 rounded-lg transition">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-semibold text-gray-800">
+                        <span class="text-gray-400 mr-2" th:text="'#' + ${post.id}">#1</span>
+                        <span th:text="${post.title}">제목</span>
+                    </h2>
+                    <span class="text-sm text-gray-500" th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">날짜</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-1" th:text="|작성자: ${post.nickname}|">작성자</p>
+            </a>
+        </div>
+    </div>
+
+
+    <div th:if="${#lists.isEmpty(posts)}" class="text-gray-500 text-center py-10">
+        게시글이 없습니다.
+    </div>
+</div>
+</body>
+</html>
