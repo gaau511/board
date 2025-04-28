@@ -27,4 +27,12 @@ public class PostViewController {
         return "view/board/list.html";
     }
 
+    @GetMapping("/{id}")
+    public String viewPostPage(@PathVariable("id") Long id, Model model) {
+        PostResponseDto postDto = postService.getPostById(id);
+        model.addAttribute("post", postDto);
+
+        return "view/board/post.html";
+    }
+
 }
