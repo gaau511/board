@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${post.title}">게시글 상세</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+<div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-8">
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2" th:text="${post.title}">제목</h1>
+        <div class="flex items-center text-sm text-gray-500 space-x-4">
+            <span th:text="'작성자: ' + ${post.nickname}">작성자</span>
+            <span th:text="'작성일: ' + ${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">작성일</span>
+            <span th:if="${post.updatedAt != null}" th:text="'수정일: ' + ${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}">수정일</span>
+        </div>
+    </div>
+
+    <div class="prose max-w-none text-gray-800 text-base whitespace-pre-line" th:text="${post.content}">
+        게시글 내용
+    </div>
+
+    <div class="mt-8 flex space-x-3">
+        <a th:href="@{/view/board}" class="px-4 py-2 rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition">목록으로</a>
+        <a th:href="@{/view/board/edit/{id}(id=${post.id})}" class="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition">수정</a>
+        <form th:action="@{/view/board/delete/{id}(id=${post.id})}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+            <button type="submit" class="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition">삭제</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
