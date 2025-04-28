@@ -46,4 +46,11 @@ public class PostViewController {
         return "redirect:/view/board";
     }
 
+    @GetMapping("/edit/{id}")
+    public String editPostPage(@PathVariable("id") Long id, Model model) {
+        PostResponseDto postDto = postService.getPostById(id);
+        model.addAttribute("postDto", postDto);
+        return "/view/board/edit.html";
+    }
+
 }
